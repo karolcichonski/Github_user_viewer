@@ -1,5 +1,7 @@
 import './assets/scss/app.scss';
 import $ from 'cash-dom';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 
 export class App {
@@ -10,9 +12,9 @@ export class App {
       let userName = $('.username.input').val();
 
       fetch(`https://api.github.com/users/${userName}`)
-        .then((response) => { response.json})
-        .then((body) => {
-          self.profile = body;
+        .then(response => response.json())
+        .then(response => {
+          self.profile = response;
           self.update_profile();
         })
 
