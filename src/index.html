@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Github-browser</title>
 </head>
 <body>
@@ -36,7 +37,7 @@
       <div class="profile-container column is-one-third">
         <section>
           <h2 class="subtitle is-4">Profile</h2>
-          <div class="profile">
+          <div class="profile is-hidden">
             <div class="media">
               <div class="media-left">
                 <figure class="media-left image is-64x64">
@@ -63,8 +64,8 @@
 
           <div class="timeline" id="user-timeline">
 
-            <div class="timeline-item">
-              <div id="tlMarker0" class="timeline-marker"></div>
+            <div id="timeline-item0" class="timeline-item is-hidden">
+              <div class="timeline-marker"></div>
               <div id="timeline0" class="timeline-content">
                 <p class="heading">Jan 21, 2016</p>
                 <div class="content">
@@ -81,9 +82,9 @@
               </div>
             </div>
 
-            <div id="primaryItem" class="timeline-item is-primary">
-              <div id="tlMarker1" class="timeline-marker is-primary"></div>
-              <div id="timeline1" class="timeline-content">
+            <div id="timeline-item1" class="timeline-item is-primary is-hidden">
+              <div class="timeline-marker is-primary"></div>
+              <div id="timeline1" class="timeline-content ">
                 <p class="heading">Jan 19, 2016</p>
                 <div class="content">
                     <span class="gh-username">
@@ -101,8 +102,8 @@
               </div>
             </div>
 
-            <div class="timeline-item">
-              <div id="tlMarker2" class="timeline-marker"></div>
+            <div id="timeline-item2" class="timeline-item is-hidden">
+              <div class="timeline-marker"></div>
               <div id="timeline2" class="timeline-content">
                 <p class="heading">Jan 19, 2016</p>
                 <div class="content">

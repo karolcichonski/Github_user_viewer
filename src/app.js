@@ -17,12 +17,20 @@ export class App {
       nameFlag = self.checkInputTex();
       let userName = $('.username.input').val();
       if (nameFlag && userName.length != 0) {
+        $(`#spinner`).removeClass('is-hidden');
         fetch(`https://api.github.com/users/${userName}`)
           .then(response => response.json())
           .then(response => {
             self.profile = response;
-            self.update_profile();
-            self.loadHistory();
+            if (response.login){
+              self.update_profile();
+            }else{
+              self.profileNotFound();
+            }
+          })
+          .then(()=>{
+              $(`#spinner`).addClass('is-hidden');
+              $(`.profile`).removeClass('is-hidden');
           })
       } else {
         $('.username').addClass('redBorder');
@@ -44,10 +52,22 @@ export class App {
   }
 
   update_profile() {
+    this.loadHistory();
     $('#profile-name').text($('.username.input').val());
     $('#profile-image').attr('src', this.profile.avatar_url);
     $('#profile-url').attr('href', this.profile.html_url).text(this.profile.login);
     $('#profile-bio').text(this.profile.bio || '(no information)');
+  }
+
+  profileNotFound() {
+    console.log("profile not found");
+    $('#profile-name').text('Profile not found');
+    $('#profile-image').attr('src', 'http://placekitten.com/200/200');
+    $('#profile-url').attr('href', "#").text('');
+    $('#profile-bio').text('');
+    for(let i=0; i<3; i++){
+      this.hideHistoryItem(i);
+    }
   }
 
   loadHistory() {
@@ -73,7 +93,6 @@ export class App {
       }
     }
   }
-
 
   updateTimeline(timelineTable, itemNr) {
     this.showHistoryItem(itemNr);
@@ -105,21 +124,11 @@ export class App {
   }
 
   hideHistoryItem(itemToHide) {
-    $(`#timeline${itemToHide}`).addClass('is-hidden');
-    $(`#tlMarker${itemToHide}`).removeClass('timeline-marker');
-    if (itemToHide == 1) {
-      $(`#tlMarker${itemToHide}`).removeClass('is-primary');
-      $('.timeline-item.is-primary').removeClass('is-primary');
-    }
+    $(`#timeline-item${itemToHide}`).addClass('is-hidden');
   }
 
   showHistoryItem(itemToShow) {
-    $(`#timeline${itemToShow}`).removeClass('is-hidden');
-    $(`#tlMarker${itemToShow}`).addClass('timeline-marker');
-    if (itemToShow == 1) {
-      $(`#tlMarker${itemToShow}`).addClass('is-primary');
-      $('#primaryItem').addClass('is-primary');
-    }
+    $(`#timeline-item${itemToShow}`).removeClass('is-hidden');
   }
 }
 
