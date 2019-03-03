@@ -60,7 +60,6 @@ export class App {
   }
 
   profileNotFound() {
-    console.log("profile not found");
     $('#profile-name').text('Profile not found');
     $('#profile-image').attr('src', 'http://placekitten.com/200/200');
     $('#profile-url').attr('href', "#").text('');
@@ -95,7 +94,6 @@ export class App {
   }
 
   updateTimeline(timelineTable, itemNr) {
-    this.showHistoryItem(itemNr);
     var dateFormat = require('dateformat');
     let dtime = new Date(timelineTable.created_at);
     let date = dateFormat(dtime, "mmm dd, yyyy");
@@ -121,6 +119,8 @@ export class App {
     </p>
   </div>`
     )
+
+    this.showHistoryItem(itemNr);
   }
 
   hideHistoryItem(itemToHide) {
