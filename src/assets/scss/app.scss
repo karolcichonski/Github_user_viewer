@@ -8,6 +8,7 @@
 
 .gh-username img{
   width: 32px;
+  vertical-align: middle;
 }
 
 #profile-bio{
@@ -16,4 +17,9 @@
 
 .timeline .timeline-item {
   padding-bottom:1em;
+}
+
+.redBorder{
+  border: 2px red solid;
+  margin-right: 3px;
 }
